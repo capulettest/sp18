@@ -72,6 +72,16 @@ public class IntList {
         return new IntList(L.first * L.first, squareListRecursive(L.rest));
     }
 
+    //Version 2
+//    public static IntList squareListRecursive(IntList L){
+//        IntList newList = new IntList(L.first * L.first, null);
+//        if(L.rest != null){
+//            newList.rest = squareListRecursive(L.rest);
+//
+//        }
+//        return newList;
+//    }
+
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
 
 
@@ -81,8 +91,13 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if(B != null) {
+            IntList iter = A;
+            while (iter.rest != null)
+                iter = iter.rest;
+            iter.rest = B;
+        }
+        return A;
     }
 
     /**
@@ -90,21 +105,63 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList newListHead = null;
+        IntList iterNew = newListHead;
+        IntList iterOld;
+
+//        if(A != null) {
+//            newListHead = new IntList(A.first, A.rest);
+//            iterOld = A.rest;
+//        }
+//        else if(B != null) {
+//            newListHead = new IntList(B.first, B.rest);
+//            iterOld = B.rest;
+//        }
+
+
+        // A == null && B != null
+        // A != null && B == null
+        // A == null && B == null
+
+
+        if(A != null) {
+            newListHead = new IntList(A.first, A.rest);
+            iterNew = newListHead;
+            iterOld = A.rest;
+            while (iterOld != null) {
+                IntList newIntListNode = new IntList(iterOld.first, iterOld.rest);
+                iterNew.rest = newIntListNode;
+                iterNew = newIntListNode;
+                iterOld = iterOld.rest;
+            }
+        }
+
+        if(B != null) {
+
+            if(A == null) {
+                newListHead = new IntList(B.first, B.rest);
+                iterNew = newListHead;
+                iterOld = A.rest;
+                while (iterOld != null) {
+                    IntList newIntListNode = new IntList(iterOld.first, iterOld.rest);
+                    iterNew.rest = newIntListNode;
+                    iterNew = newIntListNode;
+                    iterOld = iterOld.rest;
+                }
+            }
+
+            else {
+                iterOld = B;
+                while (iterOld != null) {
+                    IntList newIntListNode = new IntList(iterOld.first, iterOld.rest);
+                    iterNew.rest = newIntListNode;
+                    iterNew = newIntListNode;
+                    iterOld = iterOld.rest;
+                }
+            }
+        }
+        return newListHead;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
