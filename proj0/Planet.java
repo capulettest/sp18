@@ -72,6 +72,4 @@ public class Planet{
     	xxPos = xxPos + dt * xxVel;
     	yyPos = yyPos + dt * yyVel;
     }
-
-
 }
