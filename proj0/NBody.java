@@ -1,6 +1,6 @@
 public class NBody{
 
-	public static int readPlanetCount(String planetsTxtPath){
+	private static int readPlanetCount(String planetsTxtPath){
 		In in = new In(planetsTxtPath);
 		int pC = in.readInt();
 		return pC;
@@ -26,7 +26,7 @@ public class NBody{
 			double initialVelocityX = in.readDouble();
 			double initialVelocityY = in.readDouble();
 			double mass = in.readDouble();
-			String nameOfImageFile = "images/" + in.readString();
+			String nameOfImageFile = in.readString();
 			planet = new Planet(initialPositionX, initialPositionY,
 								initialVelocityX, initialVelocityY,
 								mass, 
